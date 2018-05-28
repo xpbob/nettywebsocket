@@ -1,3 +1,4 @@
+import com.xp.handler.WebsocketHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -27,6 +28,7 @@ public class Main {
                 pipeline.addLast("aggregator",new HttpObjectAggregator(65536));
                 // ChunkedWriteHandler：向客户端发送HTML5文件
                 pipeline.addLast("http-chunked",new ChunkedWriteHandler());
+                pipeline.addLast(new WebsocketHandler());
 
             }
         });
